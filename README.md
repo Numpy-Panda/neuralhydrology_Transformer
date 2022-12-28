@@ -1,41 +1,27 @@
 ![#](docs/source/_static/img/neural-hyd-logo-black.png)
 
-Python library to train neural networks with a strong focus on hydrological applications.
+This repository is based on [NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology) and has incorporated several [Transformer](https://arxiv.org/abs/1706.03762) models and [Timestamp Positional Encoding method](https://arxiv.org/abs/2012.07436). The Transformer models include [Reformer](https://arxiv.org/abs/2001.04451), [Informer](https://arxiv.org/abs/2012.07436), [Linformer](https://arxiv.org/abs/2006.04768), and [FEDformer](https://arxiv.org/abs/2201.12740), which were introduced in recent years to address the issues with the original Transformer in time series prediction problems. 
 
-This package has been used extensively in research over the last years and was used in various academic publications. 
-The core idea of this package is modularity in all places to allow easy integration of new datasets, new model 
-architectures or any training-related aspects (e.g. loss functions, optimizer, regularization). 
-One of the core concepts of this code base are configuration files, which let anyone train neural networks without
-touching the code itself. The NeuralHydrology package is built on top of the deep learning framework 
-[PyTorch](https://pytorch.org/), since it has proven to be the most flexible and useful for research purposes.
+[]()
 
-We (the AI for Earth Science group at the Institute for Machine Learning, Johannes Kepler University, Linz, Austria) are using
-this code in our day-to-day research and will continue to integrate our new research findings into this public repository.
+# Transformers for Hydrological modeling
+In a deep learning-based hydrological model, the discharge at a particular time step is a function of the meteorological forcing observed over the past n time steps. Therefore, compared to the original Transformer architecture, the Transformer used for hydrological modeling only needs the Encoder part.
 
-- Documentation: [neuralhydrology.readthedocs.io](https://neuralhydrology.readthedocs.io)
-- Research Blog: [neuralhydrology.github.io](https://neuralhydrology.github.io)
-- Bug reports/Feature requests [https://github.com/neuralhydrology/neuralhydrology/issues](https://github.com/neuralhydrology/neuralhydrology/issues)
+![#](docs/source/_static/img/Transformers_for_RR.svg)
 
-# Cite NeuralHydrology
 
-In case you use NeuralHydrology in your research or work, it would be highly appreciated if you include a reference to our [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.04050#) in any kind of publication.
 
-```bibtex
-@article{kratzert2022joss,
-  title = {NeuralHydrology --- A Python library for Deep Learning research in hydrology},
-  author = {Frederik Kratzert and Martin Gauch and Grey Nearing and Daniel Klotz},
-  journal = {Journal of Open Source Software},
-  publisher = {The Open Journal},
-  year = {2022},
-  volume = {7},
-  number = {71},
-  pages = {4050},
-  doi = {10.21105/joss.04050},
-  url = {https://doi.org/10.21105/joss.04050},
-}
-```
+
+# Cite
+
+In case you use any Transformer models in your research or work, it would be highly appreciated if you cite this repository.
 
 # Contact
 
 For questions or comments regarding the usage of this repository, please use the [discussion section](https://github.com/neuralhydrology/neuralhydrology/discussions) on Github. For bug reports and feature requests, please open an [issue](https://github.com/neuralhydrology/neuralhydrology/issues) on GitHub.
 In special cases, you can also reach out to us by email: neuralhydrology(at)googlegroups.com
+
+
+# Recommendation
+
+According to our results from the [CAMELS](https://ral.ucar.edu/solutions/products/camels) experiment, the Reformer model with time feature positional encoding performed well in simulating the rainfall-runoff relationship in snow-driven basins (major precipitation form is snow), even outperforming LSTM. Therefore, if you are looking to do hydrological modeling in a snow-driven catchment, the Reformer model may be worth considering.
