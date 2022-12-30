@@ -144,7 +144,6 @@ class BaseTrainer(object):
         self.loader = self._get_data_loader(ds=ds)
 
         self.model = self._get_model().to(self.device)
-        self._number_of_trainable()
         if self.cfg.checkpoint_path is not None:
             LOGGER.info(f"Starting training from Checkpoint {self.cfg.checkpoint_path}")
             self.model.load_state_dict(torch.load(str(self.cfg.checkpoint_path), map_location=self.device))
@@ -342,10 +341,6 @@ class BaseTrainer(object):
         else:
             self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         LOGGER.info(f"### Device {self.device} will be used for training")
-        
-    def _number_of_trainable(self):
-        trainable_num = sum(p.numel() for p in self.model.parameters() if p.requires_grad)
-        LOGGER.info(f"### Total number of trainable parameters: {trainable_num}")
 
     def _create_folder_structure(self):
         # create as subdirectory within run directory of base run
