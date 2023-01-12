@@ -12,9 +12,14 @@ from neuralhydrology.modelzoo.mclstm import MCLSTM
 from neuralhydrology.modelzoo.mtslstm import MTSLSTM
 from neuralhydrology.modelzoo.odelstm import ODELSTM
 from neuralhydrology.modelzoo.transformer import Transformer
+from neuralhydrology.modelzoo.informer import Informer
+from neuralhydrology.modelzoo.reformer import Reformer
+from neuralhydrology.modelzoo.linformer import Linformer
+from neuralhydrology.modelzoo.fedformer import FEDformer
 from neuralhydrology.utils.config import Config
 
-SINGLE_FREQ_MODELS = ["cudalstm", "ealstm", "customlstm", "embcudalstm", "gru", "transformer", "mclstm", "arlstm"]
+SINGLE_FREQ_MODELS = ["cudalstm", "ealstm", "customlstm", "embcudalstm", "gru", "transformer", "mclstm", "arlstm",
+                      "informer", "reformer", "linformer", "fedformer"]
 AUTOREGRESSIVE_MODELS = ['arlstm']
 
 
@@ -65,6 +70,14 @@ def get_model(cfg: Config) -> nn.Module:
         model = MCLSTM(cfg=cfg)
     elif cfg.model.lower() == "transformer":
         model = Transformer(cfg=cfg)
+     elif cfg.model.lower() == "informer":
+        model = Informer(cfg=cfg)
+    elif cfg.model.lower() == "reformer":
+        model = Reformer(cfg=cfg)
+    elif cfg.model.lower() == "linformer":
+        model = Linformer(cfg=cfg)
+    elif cfg.model.lower() == "fedformer":
+        model = FEDformer(cfg=cfg)
     else:
         raise NotImplementedError(f"{cfg.model} not implemented or not linked in `get_model()`")
 
