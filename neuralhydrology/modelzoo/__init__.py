@@ -70,7 +70,7 @@ def get_model(cfg: Config) -> nn.Module:
         model = MCLSTM(cfg=cfg)
     elif cfg.model.lower() == "transformer":
         model = Transformer(cfg=cfg)
-     elif cfg.model.lower() == "informer":
+    elif cfg.model.lower() == "informer":
         model = Informer(cfg=cfg)
     elif cfg.model.lower() == "reformer":
         model = Reformer(cfg=cfg)
