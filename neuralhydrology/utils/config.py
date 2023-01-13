@@ -775,3 +775,78 @@ class Config(object):
             'activation': embedding_spec.get('activation', 'tanh'),
             'dropout': embedding_spec.get('dropout', 0.0)
         }
+    
+    @property
+    def reformer_nheads(self) -> int:
+        return self._get_value_verbose("reformer_nheads")
+    
+    @property
+    def reformer_layers(self) -> int:
+        return self._get_value_verbose("reformer_layers")
+    
+    @property
+    def reformer_bucket_size(self) -> int:
+        return self._get_value_verbose("reformer_bucket_size")
+    
+    @property
+    def reformer_dropout(self) -> int:
+        return self._get_value_verbose("reformer_dropout")
+    
+    @property
+    def reformer_n_hashes(self) -> int:
+        return self._get_value_verbose("reformer_n_hashes")
+    
+    @property
+    def linformer_n_layers(self) -> int:
+        return self._get_value_verbose("linformer_n_layers")
+    @property
+    def linformer_n_heads(self) -> int:
+        return self._get_value_verbose("linformer_n_heads")
+    
+    @property
+    def informer_n_layers(self) -> int:
+        return self._get_value_verbose("informer_n_layers")
+    @property
+    def informer_n_heads(self) -> int:
+        return self._get_value_verbose("informer_n_heads")
+    @property
+    def informer_distil(self) -> bool:
+        return self._get_value_verbose("informer_distil")
+    @property
+    def informer_factor(self) -> int:
+        return self._get_value_verbose("informer_factor")
+    @property
+    def informer_activation(self) -> str:
+        return self._get_value_verbose("informer_activation")
+    
+    @property
+    def timeF(self) -> bool:
+        return self._get_value_verbose("timeF")
+
+    @property
+    def fedformer_modes(self) -> bool:
+        return self._get_value_verbose("fedformer_modes")
+    @property
+    def fedformer_version(self) -> bool:
+        return self._get_value_verbose("fedformer_version")
+    @property
+    def fedformer_base(self) -> bool:
+        return self._get_value_verbose("fedformer_base")
+    @property
+    def fedformer_mode_select(self) -> bool:
+        return self._get_value_verbose("fedformer_mode_select")
+    @property
+    def fedformer_factor(self) -> bool:
+        return self._get_value_verbose("fedformer_factor")
+    @property
+    def fedformer_nheads(self) -> bool:
+        return self._get_value_verbose("fedformer_nheads")
+    @property
+    def fedformer_e_layers(self) -> bool:
+        return self._get_value_verbose("fedformer_e_layers")
+    @property
+    def fedformer_d_layers(self) -> bool:
+        return self._get_value_verbose("fedformer_d_layers")
+    @property
+    def fedformer_wavelet(self) -> bool:
+        return self._get_value_verbose("fedformer_wavelet")
