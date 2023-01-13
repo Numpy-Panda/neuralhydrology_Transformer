@@ -97,8 +97,7 @@ class BaseTrainer(object):
         return DataLoader(ds,
                           batch_size=self.cfg.batch_size,
                           shuffle=True,
-                          num_workers=self.cfg.num_workers,
-                          collate_fn=ds.collate_fn)
+                          num_workers=self.cfg.num_workers)
 
     def _freeze_model_parts(self):
         # freeze all model weights
