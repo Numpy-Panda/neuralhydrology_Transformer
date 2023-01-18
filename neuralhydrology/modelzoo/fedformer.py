@@ -137,9 +137,9 @@ class FEDformer(BaseModel):
         x_d = self.embedding_net(data)  #[seq_len, batch_size, d_model]
         device = x_d.device
 
-        x_enc_mark = pd.to_datetime(data['x_t'].numpy().flatten().astype(str), format='%Y%m%d')
+        x_enc_mark = pd.to_datetime(data['x_t'].cpu().numpy().flatten().astype(str), format='%Y%m%d')
         x_enc_mark = time_features(x_enc_mark, freq='d').transpose(1, 0).reshape(data['x_t'].shape[0], data['x_t'].shape[1], -1)
-        last_day = pd.to_datetime(data['x_t'][:, -1].numpy().flatten().astype(str), format='%Y%m%d')
+        last_day = pd.to_datetime(data['x_t'][:, -1].cpu().numpy().flatten().astype(str), format='%Y%m%d')
         next_day = pd.DatetimeIndex(last_day) + pd.DateOffset(1)
         next_day = time_features(next_day, freq='d').transpose(1, 0).reshape(data['x_t'].shape[0], 3)
         x_dec_mark = np.insert(x_enc_mark, data['x_t'].shape[1], values=next_day, axis=1)
