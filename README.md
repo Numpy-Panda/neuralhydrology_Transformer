@@ -67,10 +67,12 @@ The detailed descriptions about the arguments of FEDformer are as following:
 
 In case you use any Transformer models in your research or work, it would be highly appreciated if you cite this repository.
 
+If this repository is helpful for you, please give me a star!
+
 # Contact
 
-For questions or comments regarding the usage of this repository, please use the [discussion section](https://github.com/neuralhydrology/neuralhydrology/discussions) on Github. For bug reports and feature requests, please open an [issue](https://github.com/neuralhydrology/neuralhydrology/issues) on GitHub.
-In special cases, you can also reach out to us by email: neuralhydrology(at)googlegroups.com
+
+In special cases, you can also reach out to me by email: maokangmin123(at)gmail.com, or comment at my personal website: [kangmin.nl](http://kangmin.nl/).
 
 
 # Recommendation
