@@ -1,15 +1,9 @@
 # Transformer-based rainfall-runoff modeling
 
-Over the past several months, I have undertaken research on the application of the [Transformer](https://arxiv.org/abs/1706.03762) architecture to rainfall-runoff modeling. In recent years, the availability of large-sample hydrological datasets (e.g. [CAMELS](https://ral.ucar.edu/solutions/products/camels)) and open-source code (e.g. [NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology)) has facilitated the rapid advancement of machine learning in the field of hydrology. In this light, I am publicly releasing the code, which constitutes a crucial component of my Master's thesis (available in [TU Delft repository](https://repository.tudelft.nl/) soon). Building upon the NeuralHydrology framework, the repository incorporates several rainfall-runoff models based on variants of the Transformer architecture, including the [Reformer](https://arxiv.org/abs/2001.04451), [Informer](https://arxiv.org/abs/2012.07436), [Linformer](https://arxiv.org/abs/2006.04768), and [FEDformer](https://arxiv.org/abs/2201.12740), which have been specifically developed for time-series prediction based on Transformer architecture.
+Over the past several months, I have undertaken research on the application of the [Transformer](https://arxiv.org/abs/1706.03762) architecture to rainfall-runoff modeling. In recent years, the availability of large-sample hydrological datasets (e.g. [CAMELS](https://ral.ucar.edu/solutions/products/camels)) and open-source code (e.g. [NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology)) has facilitated the rapid advancement of machine learning in the field of hydrology. In this light, I am publicly releasing the code, which constitutes a crucial component of my Master's thesis (will be available in [TU Delft repository](https://repository.tudelft.nl/) soon). Building upon the NeuralHydrology framework, the repository incorporates rainfall-runoff models based on 4 variants of the Transformer architecture, including the [Reformer](https://arxiv.org/abs/2001.04451), [Informer](https://arxiv.org/abs/2012.07436), [Linformer](https://arxiv.org/abs/2006.04768), and [FEDformer](https://arxiv.org/abs/2201.12740), which have been specifically developed for time-series prediction based on Transformer architecture.
 
 
-
-
-When applying deep learning technique for rainfall-runoff modeling, the discharge at a particular time step is a function of the meteorological forcing observed over the past n time steps. Therefore, compared to the original Transformer architecture, the Transformer used for hydrological modeling only needs the Encoder part.
-
-![#](docs/source/_static/img/Transformers_for_RR.svg)
-
-These Transformer variants were used for regional rainfall-runoff modeling using the CAMELS dataset, and their performance was compared to a benchmark LSTM. The results can be observed in the metrics presented below.
+These Transformer variants were used for regional rainfall-runoff modeling using the CAMELS dataset, and their performance was compared to the [LSTM benchmark](https://hess.copernicus.org/articles/23/5089/2019/) using some metrics. The results can be seen in Table below.
 
 |           | Reformer | FEDformer | Linformer | Transformer | Informer |    LSTM |
 |-----------|---------:|----------:|----------:|------------:|---------:|--------:|
@@ -21,10 +15,18 @@ These Transformer variants were used for regional rainfall-runoff modeling using
 | FMS       |    3.385 |    -9.191 |   -11.540 |     -13.742 |   -7.671 |  -8.021 |
 
 
+When applying deep learning technique for rainfall-runoff modeling, the discharge at a particular time step is a function of the meteorological forcing observed over the past n time steps. Therefore, the Transformer-based rainfall-runoff models only relies on the encoder part, as Figure below shows.
+
+![#](docs/source/_static/img/Transformers_for_RR.svg)
+
 # Usage
 
 
-Some Transformer variants has been added into the NeuralHydrology.
+If you want to test if these 4 models can work properly on your device, please use `test.ipynb` for testing. In this notebook, you can also see that these 4 models have been successfully run and trained on the two basins of the CAMLES data (the training data is in `data/CAMELS_US`). Additionally, if you want to customize the models, you can refer to the `.yml` files in `transformer_test` directory, where the hyperparameter keywords and specific explanations of the four models are as follows:
+
+## [Timestamp positional encoding](https://arxiv.org/abs/2012.07436)
+The timestamp information including [Day-Of-Week, Day-Of-Month, Day-Of-Year] can be used for positional encoding if the keyword `timeF` in the `.yml` is set as `True` (i.e. `timeF: True`). If you want to use the sinusoidal positional encoding method, set `timeF` to `False`. But still need to pay attention to, the information of [Day-Of-Week, Day-Of-Month] may not have much significance for hydrological modeling, and even the information of [Day-Of-Year] may introduce noise in global modeling, because the climate of the northern and southern hemispheres is opposite.
+
 
 ## Reformer
 The detailed descriptions about the arguments of Reformer are as following:
@@ -48,6 +50,15 @@ The detailed descriptions about the arguments of Informer are as following:
 | informer_factor      | Probsparse attn factor (defaults to 5).             |
 | informer_activation      | Activation function (defaults to `gelu`).  |
 
+
+
+## Linformer
+The detailed descriptions about the arguments of FEDformer are as following:
+| Hyperparameter name | Description of parameter |
+| --- | --- |
+| linformer_n_layers           | Number of Linformer encoder layers (defaults to 2).                                             |
+| linformer_n_heads      | number of Linformer heads (defaults to 2).    |
+
 ## FEDformer
 The detailed descriptions about the arguments of FEDformer are as following:
 | Hyperparameter name | Description of parameter |
@@ -66,12 +77,6 @@ The detailed descriptions about the arguments of FEDformer are as following:
 
 
 
-## Linformer
-The detailed descriptions about the arguments of FEDformer are as following:
-| Hyperparameter name | Description of parameter |
-| --- | --- |
-| linformer_n_layers           | Number of Linformer encoder layers (defaults to 2).                                             |
-| linformer_n_heads      | number of Linformer heads (defaults to 2).    |
 
 
 
