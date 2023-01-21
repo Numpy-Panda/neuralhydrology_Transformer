@@ -1,15 +1,27 @@
-![#](docs/source/_static/img/neural-hyd-logo-black.png)
+# Transformer-based rainfall-runoff modeling
 
-Machine learning has achieved great remarkble achievement in the field of hydrology
+Over the past several months, I have undertaken research on the application of the [Transformer](https://arxiv.org/abs/1706.03762) architecture to rainfall-runoff modeling. In recent years, the availability of large-sample hydrological datasets (e.g. [CAMELS](https://ral.ucar.edu/solutions/products/camels)) and open-source code (e.g. [NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology)) has facilitated the rapid advancement of machine learning in the field of hydrology. In this light, I am publicly releasing the code, which constitutes a crucial component of my Master's thesis (available in [TU Delft repository](https://repository.tudelft.nl/) soon). Building upon the NeuralHydrology framework, the repository incorporates several rainfall-runoff models based on variants of the Transformer architecture, including the [Reformer](https://arxiv.org/abs/2001.04451), [Informer](https://arxiv.org/abs/2012.07436), [Linformer](https://arxiv.org/abs/2006.04768), and [FEDformer](https://arxiv.org/abs/2201.12740), which have been specifically developed for time-series prediction based on Transformer architecture.
 
-This repository is based on [NeuralHydrology](https://github.com/neuralhydrology/neuralhydrology) and has incorporated several [Transformer](https://arxiv.org/abs/1706.03762) models and [Timestamp Positional Encoding method](https://arxiv.org/abs/2012.07436). The Transformer models include [Reformer](https://arxiv.org/abs/2001.04451), [Informer](https://arxiv.org/abs/2012.07436), [Linformer](https://arxiv.org/abs/2006.04768), and [FEDformer](https://arxiv.org/abs/2201.12740), which were introduced in recent years to address the issues with the original Transformer in time series prediction problems. 
 
-[]()
 
-# Transformers for Hydrological modeling
-In a deep learning-based hydrological model, the discharge at a particular time step is a function of the meteorological forcing observed over the past n time steps. Therefore, compared to the original Transformer architecture, the Transformer used for hydrological modeling only needs the Encoder part.
+
+When applying deep learning technique for rainfall-runoff modeling, the discharge at a particular time step is a function of the meteorological forcing observed over the past n time steps. Therefore, compared to the original Transformer architecture, the Transformer used for hydrological modeling only needs the Encoder part.
 
 ![#](docs/source/_static/img/Transformers_for_RR.svg)
+
+These Transformer variants were used for regional rainfall-runoff modeling using the CAMELS dataset, and their performance was compared to a benchmark LSTM. The results can be observed in the metrics presented below.
+
+|           | Reformer | FEDformer | Linformer | Transformer | Informer |    LSTM |
+|-----------|---------:|----------:|----------:|------------:|---------:|--------:|
+| NSE       |    0.728 |     0.732 |     0.715 |       0.725 |    0.709 |   0.732 |
+| Alpha-NSE |    0.822 |     0.858 |     0.866 |       0.834 |    0.817 |   0.842 |
+| Beta-NSE  |   -0.050 |    -0.011 |    -0.016 |      -0.006 |   -0.032 |  -0.039 |
+| FHV       |  -17.376 |   -14.263 |   -13.368 |     -15.900 |  -17.717 | -16.058 |
+| FLV       |  -19.797 |    -1.806 |  -177.769 |      24.667 |    3.661 |  28.927 |
+| FMS       |    3.385 |    -9.191 |   -11.540 |     -13.742 |   -7.671 |  -8.021 |
+
+
+# Usage
 
 
 Some Transformer variants has been added into the NeuralHydrology.
