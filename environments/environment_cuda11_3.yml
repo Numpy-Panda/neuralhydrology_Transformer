@@ -19,6 +19,8 @@ dependencies:
   - python=3.7
   - pytorch
   - ruamel.yaml
+  - ruamel
+  - reformer_pytorch
   - scipy
   - sphinx
   - tqdm
