@@ -31,3 +31,4 @@ dependencies:
     - sphinx-rtd-theme
     - nbsphinx
     - nbsphinx-link
+    - jupyterlab
