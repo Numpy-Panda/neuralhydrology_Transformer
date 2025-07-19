@@ -82,7 +82,7 @@ The detailed descriptions about the arguments of FEDformer are as following:
 
 # Cite
 
-In case you use any Transformer models in your research or work, it would be highly appreciated if you cite this repository.
+In case you use any Transformer models in your research or work, it would be highly appreciated if you cite this repository or my [thesis](https://repository.tudelft.nl/record/uuid:d225d073-0499-4f1c-8340-1e8f5f4a8401).
 
 If this repository is helpful for you, please give me a star!
 
